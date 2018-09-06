@@ -1,5 +1,5 @@
 [![Build Status](https://img.shields.io/travis/ptavares/ansible-role-terraform/master.svg?style=flat-square)](https://travis-ci.org/ptavares/ansible-role-terraform)
-[![Ansible Role](https://img.shields.io/ansible/role/ID.svg)](https://galaxy.ansible.com/ptavares/ansible-role-terraform)
+[![Ansible Role](https://img.shields.io/ansible/role/29415.svg)](https://galaxy.ansible.com/ptavares/ansible-role-terraform)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/ptavares/ansible-role-terraform/blob/master/LICENSE)
 
 ansible-role-terraform
