@@ -1,0 +1,54 @@
+---
+# tasks file for ansible-role-terraform
+
+# Check requirement before installation
+- include: check-requirements.yml
+  tags:
+    - terraform-install-all
+    - terraform-install-requirements
+
+# Get last version
+- name: Get last terraform version
+  shell: "curl https://api.github.com/repos/hashicorp/terraform/releases | grep body | head -n 1 | cut -d '\"' -f 4"
+  args:
+    warn: False
+  failed_when: False
+  changed_when: False
+  register: last_terraform_version
+  when: terraform_install_version is not defined
+  tags:
+    - terraform-install-all
+    - terraform-install-update  
+
+# Init version if not defined
+- set_fact:
+    terraform_install_version: "{{ last_terraform_version.stdout | replace('`', '') }}"
+  when: terraform_install_version is not defined
+  tags:
+    - terraform-install-all
+    - terraform-install-update
+
+# Check current version
+- name: Check current terraform Version
+  shell: "terraform --version | head -n 1 | grep {{ terraform_install_version }}"
+  failed_when: False
+  changed_when: False
+  register: current_terraform_version
+  tags:
+    - terraform-install-all
+    - terraform-install-update
+
+# Remove current terraform executable if not same version
+- include: remove.yml
+  when: >
+    current_terraform_version.stdout is defined
+    and terraform_install_version not in current_terraform_version.stdout
+  tags:
+    - terraform-install-all
+    - terraform-install-update
+
+# Install Terraform
+- include: install.yml
+  tags:
+    - terraform-install-all
+    - terraform-install-update

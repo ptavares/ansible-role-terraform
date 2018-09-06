@@ -1,0 +1,8 @@
+#####################################
+# Remove current terraform executable
+#####################################
+- name: Delete existing terraform executable.
+  file:
+    path: "{{ terraform_execution_path }}/{{ terraform_execution_file_name }}"
+    state: absent
+  become: true
