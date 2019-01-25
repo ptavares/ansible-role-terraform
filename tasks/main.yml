@@ -18,11 +18,11 @@
   when: terraform_install_version is not defined
   tags:
     - terraform-install-all
-    - terraform-install-update  
+    - terraform-install-update
 
 # Init version if not defined
 - set_fact:
-    terraform_install_version: "{{ last_terraform_version.stdout | replace('`', '') }}"
+    terraform_install_version: "{{ last_terraform_version.stdout | replace('`', '') | replace('v', '') }}"
   when: terraform_install_version is not defined
   tags:
     - terraform-install-all
