@@ -7,18 +7,18 @@
   get_url:
     url: "{{ terraform_url }}"
     dest: "{{ terraform_download_location }}"
-  when: terraform_install_version is defined and current_terraform_version.rc != 0
+  when: not( (terraform_install_version is undefined) or (terraform_install_version is none) or (terraform_install_version | trim == '') )and current_terraform_version.rc != 0
 
 - name: "Unzip file {{ terraform_downloaded_file_name }}"
   unarchive:
     src: "{{ terraform_download_location }}/{{ terraform_downloaded_file_name }}"
     dest: "{{ terraform_download_location }}"
-  when: terraform_install_version is defined and current_terraform_version.rc != 0
+  when: not( (terraform_install_version is undefined) or (terraform_install_version is none) or (terraform_install_version | trim == '') )and current_terraform_version.rc != 0
 
 - name: Move terraform binarie for execution
   copy:
     src: "{{ terraform_download_location }}/{{ terraform_execution_file_name }}"
     dest: "{{ terraform_execution_path }}/{{ terraform_execution_file_name }}"
     mode: u+x,g+x,o+x
-  when: terraform_install_version is defined and current_terraform_version.rc != 0
+  when: not( (terraform_install_version is undefined) or (terraform_install_version is none) or (terraform_install_version | trim == '') )and current_terraform_version.rc != 0
   become: true
