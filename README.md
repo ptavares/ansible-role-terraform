@@ -29,9 +29,9 @@ terraform_install_version: X.X.X
 # Directory where zip will be downloaded before installation
 terraform_download_location: /tmp/
 # Url to terraform zip
-terraform_url: "https://releases.hashicorp.com/terraform/{{ terraform_install_version }}/terraform_{{ terraform_install_version }}_linux_amd64.zip"
-# Downloaded file name 
-terraform_downloaded_file_name: "terraform_{{ terraform_install_version }}_linux_amd64.zip"
+terraform_url: "https://releases.hashicorp.com/terraform/{{ terraform_install_version | regex_replace('^v', '') }}/terraform_{{ terraform_install_version | regex_replace('^v', '') }}_linux_amd64.zip"
+# Downloaded file name
+terraform_downloaded_file_name: "terraform_{{ terraform_install_version | regex_replace('^v', '') }}_linux_amd64.zip"
 ```
 
 ### Installation information
