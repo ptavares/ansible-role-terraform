@@ -11,6 +11,15 @@ galaxy_info:
     - name: Debian
       versions:
         - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Alpine
+      versions:
+        - all
+    - name: Archlinux
+      versions:
+        - latest
   galaxy_tags:
     - system
     - cloud

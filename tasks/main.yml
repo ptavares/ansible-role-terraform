@@ -9,7 +9,8 @@
 
 # Get last version
 - name: Get last terraform version
-  shell: "curl https://api.github.com/repos/hashicorp/terraform/releases | grep tag_name | head -n 1 | cut -d '\"' -f 4"
+  shell: |
+    curl https://api.github.com/repos/hashicorp/terraform/releases | grep tag_name | head -n 1 | cut -d '"' -f 4
   args:
     warn: False
   failed_when: False
@@ -21,7 +22,8 @@
     - terraform-install-update
 
 # Init version if not defined
-- set_fact:
+- name: Init terraform version
+  set_fact:
     terraform_install_version: "{{ last_terraform_version.stdout }}"
   when: terraform_install_version is not defined
   tags:
@@ -30,7 +32,8 @@
 
 # Check current version
 - name: Check current terraform Version
-  shell: "terraform --version | head -n 1 | grep {{ terraform_install_version }}"
+  shell: |
+    terraform --version | head -n 1 | grep {{ terraform_install_version }}
   failed_when: False
   changed_when: False
   register: current_terraform_version
