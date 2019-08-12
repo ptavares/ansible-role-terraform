@@ -19,7 +19,7 @@ galaxy_info:
         - all
     - name: Archlinux
       versions:
-        - latest
+        - all
   galaxy_tags:
     - system
     - cloud

@@ -1,7 +1,7 @@
 ##################################
 # Check requirements before insall
 ##################################
-- name : Set Required Package
+- name: Set Required Package
   set_fact: packages="['curl','unzip']"
 
 - name: Ensure dependancies presence's (Debian / Ubuntu)

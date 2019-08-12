@@ -10,6 +10,7 @@
 # Get last version
 - name: Get last terraform version
   shell: |
+    set -e
     curl https://api.github.com/repos/hashicorp/terraform/releases | grep tag_name | head -n 1 | cut -d '"' -f 4
   args:
     warn: False
@@ -33,6 +34,7 @@
 # Check current version
 - name: Check current terraform Version
   shell: |
+    set -e
     terraform --version | head -n 1 | grep {{ terraform_install_version }}
   failed_when: False
   changed_when: False
